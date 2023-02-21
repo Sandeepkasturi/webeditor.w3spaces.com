@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>WEB EDITOR</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <div class="login-container">
+            <form>
+                <h1 align = "center">WEB EDITOR</h1>
+                <h2>Login</h2>
+                <input type="text" placeholder="Username" id="username">
+                <input type="password" placeholder="Password" id="password">
+                <button type="button" onclick="checkPassword()">Submit</button>
+            </form>
+        </div>
+        <script src="scripts.js"></script>
+        <script>
+            // Check if the user is already logged in
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                // If yes, redirect to the home page
+                alert("WELCOME BACK")
+                window.location.href = 'editor.html';
+            }
+
+            function checkPassword() {
+                // Get the username and password entered by the user
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Check if the username and password are correct
+                if (username === 'admin' && password === 'admin') {
+                    // If correct, store the logged in user in local storage
+                    localStorage.setItem('loggedInUser', username);
+                    alert("Welcome Thank you for using my Editor");
+                    // Redirect to the home page
+                    window.location.href = 'editor.html';
+                }
+                else if (username === 'student' && password === 'codehere') {
+                    // If correct, store the logged in user in local storage
+                    localStorage.setItem('loggedInUser', username);
+                    alert("Thank you for using my Editor");
+                    // Redirect to the home page
+                    window.location.href = 'editor.html';
+                }
+                 else {
+                    // If incorrect, show an error message
+                    alert('Incorrect username or password. Please try again.');
+                }
+            }
+        </script>
+    </body>
+
+</html>

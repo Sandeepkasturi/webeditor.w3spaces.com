@@ -1,0 +1,130 @@
+ <!DOCTYPE html>
+<html>
+    <header id="header"><big>WEB EDITOR</big></header>
+   <head>
+    <title>WEB EDITOR</title>
+    <meta charset="utf-8">
+    <style>
+      /*  container */
+      .container {
+        border: 5px solid black;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      }
+      a {
+  color: white; 
+}
+      body  {
+  background-color: black;
+      }
+      #header {
+          text-align:center;
+          background-color:grey;
+          margin-bottom: 10px;
+          padding: 10px;
+      }
+
+      /*  textareas */
+      textarea {
+        width: 45%;
+        height: 500px;
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 2px solid black;
+        resize: none;
+        background-color: black;
+      }
+
+      #html-input {
+        color: palegreen;
+      }
+
+      #css-input {
+        color: pink;
+      }
+
+      /* button */
+      button {
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    .footer2{
+        text-align:center;
+        background-color:grey;
+        margin-bottom: 5px;
+        padding: 8px;
+    }
+      button:hover {
+        background-color: #3e8e41;
+      }
+     
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Create a textarea element for the user to input HTML code -->
+      <textarea id="html-input" placeholder="Enter HTML code here" spellcheck="false" ></textarea>
+      <!-- Create a textarea element for the user to input CSS code -->
+      <textarea id="css-input" placeholder="Enter CSS code here" spellcheck="false"></textarea>
+      <!-- Create a button to run the code -->
+      <button onclick="updatePreview()">RUN</button>
+    </div>
+
+    <script>
+      // Get references to the textarea elements
+      const htmlInput = document.getElementById('html-input');
+      const cssInput = document.getElementById('css-input');
+
+      // Define a function to update the live preview
+      function updatePreview() {
+        if (!htmlInput.value) {
+          alert("ERROR: HTML input field is empty. Write code");
+          return;
+        }
+        
+        if (!htmlInput.value.includes("<html>") && !htmlInput.value.includes("<HTML>")) {
+          alert("ERROR: HTML input field is missing the html tag. Please add <html> tag to your code.");
+          return;
+        }
+        
+        if (!htmlInput.value.includes("</body>") && !htmlInput.value.includes("</BODY>")) {
+          alert("ERROR: HTML input field is not ending with </body> tag. Please add </body> tag to your code.");
+          return;
+        }
+
+        // Open a new window and display the live preview
+        var newWindow = window.open();
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <style>
+                ${cssInput.value}
+              </style>
+            </head>
+            <body>
+              ${htmlInput.value}
+
+            </body>
+          </html>
+        `);
+      }
+    </script>
+    <div class='footer2' id='footer_area'>
+	<div class='page'><p>
+Copyright &#169; <script type='text/javascript'>var creditsyear = new Date();document.write(creditsyear.getFullYear());</script> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a> | POWERED BY <a href='https://sandeepkasturi.blogspot.com/'>Redeem_Tech</a> CEO <a href='https://github.com/sandeepkasturi' rel='nofollow' target='_blank' title='Sandeep'>Sandeep Kasturi</a>.
+        </p>
+      
+	</div>
+</div>
+  </body>
+</html>
